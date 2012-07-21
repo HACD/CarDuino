@@ -1,9 +1,9 @@
-void setup()
-{
+void setup()  
+{ 
   display_setup();
-}
+} 
 
-void loop()
-{
-   display_loop();
+void loop()  
+{ 
+   display_loop();                        
 }
