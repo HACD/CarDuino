@@ -1,9 +1,9 @@
-#include <LiquidCrystal.h>
+//#include <LiquidCrystal.h>
 
-LiquidCrystal lcd( 8, 9, 4, 5, 6, 7 );
+//LiquidCrystal lcd( 8, 9, 4, 5, 6, 7 );
 
-#define COLUMNS = 2;
-#define ROWS = 16; 
+//#define COLUMNS = 2;
+//#define ROWS = 16; 
 
 char randomCharacters[16] = {'#', '(', ')', '*', '+', '-', ':', ';', '<', '=', '>', '{', '}', '[', ']', '~'};
 
@@ -27,12 +27,12 @@ char screen[16][2] =
       {'!', '!'}
 };  
 
-void setup()
+void display_setup()
 {  
        lcd.begin(16, 2);
 }
 
-void loop()
+void display_loop()
 {
    fillScreenRandomly();
    display(screen);

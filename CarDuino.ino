@@ -1,11 +1,15 @@
 void setup()  
 { 
+  display_setup();
+  
   // declare pin 9 to be an output:
   pinMode(led, OUTPUT);
 } 
 
 void loop()  
 { 
+   display_loop();  
+  
   // set the brightness of pin 9:
   analogWrite(led, brightness);    
 
