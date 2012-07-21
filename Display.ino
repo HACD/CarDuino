@@ -3,15 +3,19 @@
 #define LEFT 1
 #define RIGHT 0
 #define DISPLAY_PLAYER_AVATAR 'o'
+#define BLOCKER '#'
+
+#define BLOCKED_LEFT {BLOCKER, ' '}
+#define BLOCKED_RIGHT {' ', BLOCKER}
+#define NOT_BLOCKED {' ', ' '}
 
 LiquidCrystal lcd( 8, 9, 4, 5, 6, 7 );
 
-char randomCharacters[16] = {'#', '(', ')', '*', '+', '-', ':', ';', '<', '=', '>', '{', '}', '[', ']', '~'};
 char validRows[3][2] = 
 {
   {' ', ' '},
-  {'#', ' '},
-  {' ', '#'}
+  {BLOCKER, ' '},
+  {' ', BLOCKER}
 };
 
 char screen[16][2];
@@ -34,8 +38,23 @@ void displayPlayer(unsigned int playerPosition)
   lcd.print(DISPLAY_PLAYER_AVATAR);
 }
 
-char* getValidRow() {
-  return validRows[random(0, 3)];
+char* getValidRow(char screen[16][2], int previousRowIndex) {
+  char* rowBelowUs = screen[previousRowIndex];
+   
+   if (rowBelowUs[0] == BLOCKER && rowBelowUs[1] == ' ') {
+     // ["# ", "  "]
+     char blah[2][2] = { BLOCKED_LEFT, NOT_BLOCKED };
+     return blah[random(0, 2)];
+   } else if (rowBelowUs[0] == ' ' && rowBelowUs[1] == BLOCKER) {
+     // [' #', ' ']
+     char blah[2][2] = { BLOCKED_RIGHT, NOT_BLOCKED };
+     return blah[random(0, 2)];
+   }
+   
+   // ['# ', ' #', '  ']
+   char blah[3][2] = { BLOCKED_LEFT, BLOCKED_RIGHT, NOT_BLOCKED };
+   return blah[random(0, 3)];
+   
 }
 
 void shiftAndAppend(char screen[16][2], char* append) {
@@ -58,13 +77,12 @@ void display_loop(unsigned int playerPosition)
 {
    display(screen);
    displayPlayer(playerPosition);
-   shiftAndAppend(screen, getValidRow());
+   shiftAndAppend(screen, getValidRow(screen, 0));
 }
 
-void initialise() {
+void initialise() { 
   for (int row = 0; row < 16; row++) {
-     char* validRow = getValidRow();
-     screen[row][LEFT] = validRow[0];
-     screen[row][RIGHT] = validRow[1];
+     screen[row][LEFT] = ' ';
+     screen[row][RIGHT] = ' ';
   }   
 }

@@ -21,6 +21,6 @@ void loop()
   }
   
   display_loop( player_getPosition() );
-  delay(500);
+  delay(300);
 }
 
