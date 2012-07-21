@@ -5,5 +5,6 @@ void setup()
 
 void loop()  
 { 
-   display_loop();                        
+   display_loop();
 }
+
