@@ -26,7 +26,7 @@ char screen[16][2];
 
 void display(char screen[16][2]) 
 {  
-  for (int row = 0; row < 16; row++) {    
+  for (int row = 0; row < 15; row++) {    
     lcd.setCursor(row, LEFT);       
     lcd.print(screen[row][0]); 
     
@@ -37,18 +37,17 @@ void display(char screen[16][2])
 
 void display_player(unsigned int playerPosition)
 {
-  //Serial.print("player position: " + playerPosition);
-    
-  // repaint obstacles
-  lcd.setCursor(15, LEFT);
-  lcd.print(screen[15][0]);
-  
-  lcd.setCursor(15, RIGHT);
-  lcd.print(screen[15][1]);
-  
-  // paint player position
+  if (playerPosition == 1) {
+    lcd.setCursor(15, RIGHT);
+    lcd.print(screen[15][1]);  
+  }
+  else if (playerPosition == 0) {
+    lcd.setCursor(15, LEFT);
+    lcd.print(screen[15][0]);    
+  }
+ 
   lcd.setCursor(15, playerPosition);
-  lcd.print(DISPLAY_PLAYER_AVATAR);
+  lcd.print(DISPLAY_PLAYER_AVATAR);  
 }
 
 char* getValidRow(char screen[16][2], int previousRowIndex) {
