@@ -1,3 +1,14 @@
+/*--------------------------------------------------------------------------------------
+  Variables
+--------------------------------------------------------------------------------------*/
+
+unsigned long last_updated = millis();
+
+
+/*--------------------------------------------------------------------------------------
+  Functions
+--------------------------------------------------------------------------------------*/
+
 void setup()  
 { 
   buttons_setup();
@@ -6,6 +17,8 @@ void setup()
 
 void loop()  
 { 
+  unsigned long now = millis();
+  
   buttons_updateState();
   //buttons_print();
   
@@ -20,7 +33,12 @@ void loop()
     player_setPositionRight();
   }
   
-  display_loop( player_getPosition() );
-  delay(500);
+  display_player( player_getPosition() );
+  
+  if( now - last_updated > 2000 )
+  {
+    display_loop();
+    last_updated = now;
+  }
 }
 

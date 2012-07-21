@@ -27,9 +27,18 @@ void display(char screen[16][2])
   } 
 }
 
-void displayPlayer(unsigned int playerPosition)
+void display_player(unsigned int playerPosition)
 {
   Serial.print("player position: " + playerPosition);
+    
+  // repaint obstacles
+  lcd.setCursor(15, LEFT);
+  lcd.print(screen[15][0]);
+  
+  lcd.setCursor(15, RIGHT);
+  lcd.print(screen[15][1]);
+  
+  // paint player position
   lcd.setCursor(15, playerPosition);
   lcd.print(DISPLAY_PLAYER_AVATAR);
 }
@@ -54,11 +63,10 @@ void display_setup()
        initialise();
 }
 
-void display_loop(unsigned int playerPosition)
+void display_loop()
 {
-   display(screen);
-   displayPlayer(playerPosition);
-   shiftAndAppend(screen, getValidRow());
+  shiftAndAppend(screen, getValidRow()); 
+  display(screen);
 }
 
 void initialise() {
