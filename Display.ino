@@ -31,13 +31,13 @@ char* getValidRow() {
 }
 
 void shiftAndAppend(char screen[16][2], char* append) {
-    for (int row = 0; row < 15; row++) {   
-      screen[row][0] = screen[row+1][0]; 
-      screen[row][1] = screen[row+1][1]; 
+    for (int row = 15; row > 0; row--) {   
+      screen[row][0] = screen[row-1][0]; 
+      screen[row][1] = screen[row-1][1]; 
   }
  
-  screen[15][0] = append[0];
-  screen[15][1] = append[1]; 
+  screen[0][0] = append[0];
+  screen[0][1] = append[1]; 
 }
 
 void display_setup()
