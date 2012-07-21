@@ -2,6 +2,7 @@
 
 #define TOP_LEFT 1
 #define TOP_RIGHT 0
+#define DISPLAY_PLAYER_AVATAR 'o'
 
 LiquidCrystal lcd( 8, 9, 4, 5, 6, 7 );
 
@@ -25,6 +26,13 @@ void display(char screen[16][2])
        lcd.print(screen[row][column]); 
      }
   } 
+}
+
+void displayPlayer(unsigned int playerPosition)
+{
+  Serial.print("player position: " + playerPosition);
+  lcd.setCursor(0, playerPosition);
+  lcd.print(DISPLAY_PLAYER_AVATAR);
 }
 
 // when the screen is rotated 90 degrees clockwise, what was (0,0) becomes (1,0)
@@ -55,9 +63,10 @@ void display_setup()
        initialise();
 }
 
-void display_loop()
+void display_loop(unsigned int playerPosition)
 {
    display(screen);
+   displayPlayer(playerPosition);
    shiftAndAppend(screen, getValidRow());
 }
 
