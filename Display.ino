@@ -2,6 +2,7 @@
 
 #define LEFT 1
 #define RIGHT 0
+#define DISPLAY_PLAYER_AVATAR 'o'
 
 LiquidCrystal lcd( 8, 9, 4, 5, 6, 7 );
 
@@ -26,6 +27,13 @@ void display(char screen[16][2])
   } 
 }
 
+void displayPlayer(unsigned int playerPosition)
+{
+  Serial.print("player position: " + playerPosition);
+  lcd.setCursor(15, playerPosition);
+  lcd.print(DISPLAY_PLAYER_AVATAR);
+}
+
 char* getValidRow() {
   return validRows[random(0, 3)];
 }
@@ -46,9 +54,10 @@ void display_setup()
        initialise();
 }
 
-void display_loop()
+void display_loop(unsigned int playerPosition)
 {
    display(screen);
+   displayPlayer(playerPosition);
    shiftAndAppend(screen, getValidRow());
 }
 
