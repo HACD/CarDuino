@@ -1,10 +1,13 @@
 void setup()  
 { 
+  buttons_setup();
   display_setup();
 } 
 
 void loop()  
 { 
-   display_loop();
+  buttons_print(); 
+  display_loop();
+  delay(500);
 }
 

@@ -34,11 +34,18 @@ byte buttons_selectButtonDown = false;
 /**
  * Initialises the button interface
  */
-void buttons_init()
+void buttons_setup()
 {
   // set BUTTON_PIN to input and ensure pullup is off
   pinMode( BUTTONS_BUTTON_PIN, INPUT );
   digitalWrite( BUTTONS_BUTTON_PIN, LOW );
+  
+  // initalise up serial port
+  Serial.begin(9600);
+  while (!Serial) 
+  {
+    ;
+  }
 }
 
 /**
@@ -115,64 +122,29 @@ unsigned int buttons_updateState()
 }
 
 /**
- * Prints in this format (from startx):
- *  startx + 0123456789
- *          "RUDLS VVVV" 
+ * Writes button state to serial 
  */
-void buttons_display(LiquidCrystal lcd, int startx, int starty)
+void buttons_print()
 {
   unsigned int voltage = buttons_updateState();
   
-  lcd.setCursor( startx + 6, starty );
-  lcd.print( voltage );
+  Serial.print( "Voltage :" );
+  Serial.println( voltage );
   
-  lcd.setCursor( startx + 0, starty );
-  if( buttons_isRightPressed() ) 
-  {   
-    lcd.print( "R" );
-  }
-  else
-  {
-    lcd.print( " " );
-  }
+  Serial.print( "Right Pressed:");
+  Serial.println( (buttons_isRightPressed() ? "yep" : "nup") );
   
-  lcd.setCursor( startx + 1, starty );
-  if( buttons_isUpPressed() )
-  {
-    lcd.print( "U" );
-  }
-  else
-  {
-    lcd.print( " " );
-  }
+  Serial.print( "Up Pressed:");
+  Serial.println( (buttons_isUpPressed() ? "yep" : "nup") );
   
-  lcd.setCursor( startx + 2, starty );
-  if( buttons_isDownPressed() )
-  {
-    lcd.print( "D" );
-  }
-  else
-  {
-    lcd.print( " " );
-  }
+  Serial.print( "Down Pressed:");
+  Serial.println( (buttons_isDownPressed() ? "yep" : "nup") );
   
-  lcd.setCursor( startx + 3, starty );
-  if( buttons_isLeftPressed() )
-  {
-    lcd.print( "L" );
-  }
-  else
-  {
-    lcd.print( " " );
-  }
+  Serial.print( "Left Pressed:");
+  Serial.println( (buttons_isLeftPressed() ? "yep" : "nup") );
   
-  lcd.setCursor( startx + 4, starty );
-  if( buttons_isSelectPressed() )
-  {
-    lcd.print( "S" );
-  }
-  else
-  {
-    lcd.print( " " );
-  }
+  Serial.print( "Select Pressed:");
+  Serial.println( (buttons_isSelectPressed() ? "yep" : "nup") );
+  
+  Serial.println();
 }

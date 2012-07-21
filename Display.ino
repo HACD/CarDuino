@@ -35,7 +35,6 @@ void display_loop()
    //fillScreenRandomly();
    display(screen);
    shiftAndAppend(screen, newRow);
-   delay(500);
 }
 
 void fillScreenRandomly() {
