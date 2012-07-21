@@ -3,8 +3,8 @@
 --------------------------------------------------------------------------------------*/
 
 // button voltage pin
-#define PLAYER_POSITON_LEFT           0
-#define PLAYER_POSITON_RIGHT          1
+#define PLAYER_POSITION_LEFT           0
+#define PLAYER_POSITION_RIGHT          1
 #define PLAYER_AVATAR               'o'
 
 
