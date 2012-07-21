@@ -24,12 +24,12 @@ void loop()
   
   if( buttons_isUpPressed() )
   {
-    Serial.println("up pressed, moving left");
+    //Serial.println("up pressed, moving left");
     player_setPositionLeft();
   }
   else if( buttons_isDownPressed() )
   {
-    Serial.println("down pressed, moving right");
+    //Serial.println("down pressed, moving right");
     player_setPositionRight();
   }
   
