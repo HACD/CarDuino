@@ -1,9 +1,6 @@
-//#include <LiquidCrystal.h>
+#include <LiquidCrystal.h>
 
-//LiquidCrystal lcd( 8, 9, 4, 5, 6, 7 );
-
-//#define COLUMNS = 2;
-//#define ROWS = 16; 
+LiquidCrystal lcd( 8, 9, 4, 5, 6, 7 );
 
 char randomCharacters[16] = {'#', '(', ')', '*', '+', '-', ':', ';', '<', '=', '>', '{', '}', '[', ']', '~'};
 
