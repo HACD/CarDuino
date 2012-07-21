@@ -1,50 +1,19 @@
 #include <LiquidCrystal.h>
 
+#define TOP_LEFT 1
+#define TOP_RIGHT 0
+
 LiquidCrystal lcd( 8, 9, 4, 5, 6, 7 );
 
 char randomCharacters[16] = {'#', '(', ')', '*', '+', '-', ':', ';', '<', '=', '>', '{', '}', '[', ']', '~'};
-char newRow[2] = {'A', 'A'};
-
-char screen[16][2] = 
+char validRows[3][2] = 
 {
-      {'0', '1'},
-      {'2', '3'},
-      {'4', '5'},
-      {'6', '7'},
-      {'8', '9'},
-      {'!', '@'},
-      {'#', '$'},
-      {'%', '^'},
-      {'&', '*'},
-      {'(', ')'},
-      {'_', '+'},
-      {',', '.'},
-      {'/', ';'},
-      {'<', '>'},
-      {'?', '|'},     
-      {'!', '!'}
-};  
+  {' ', ' '},
+  {'#', ' '},
+  {' ', '#'}
+};
 
-void display_setup()
-{  
-       lcd.begin(16, 2);
-}
-
-void display_loop()
-{
-   //fillScreenRandomly();
-   display(screen);
-   shiftAndAppend(screen, newRow);
-}
-
-void fillScreenRandomly() {
-  for (int row = 0; row < 16; row++) {    
-     for (int column = 0; column < 2; column++) {
-        char randomValue = randomCharacters[random(0, 16+1 /* exclusive */)];
-        screen[row][column] = randomValue;
-     }
-  }   
-}
+char screen[16][2];
 
 void display(char screen[16][2]) 
 {  
@@ -60,10 +29,14 @@ void display(char screen[16][2])
 
 // when the screen is rotated 90 degrees clockwise, what was (0,0) becomes (1,0)
 int toUprightColumn(int horizontalColumn) {
-   return horizontalColumn == 0 ? 1 : 0; 
+   return horizontalColumn == 0 ? TOP_LEFT : TOP_RIGHT; 
 }
 
-void shiftAndAppend(char screen[16][2], char append[2]) {
+char* getValidRow() {
+  return validRows[random(0, 3)];
+}
+
+void shiftAndAppend(char screen[16][2], char* append) {
     for (int row = 0; row < 15; row++) {    
      for (int column = 0; column < 2; column++) {
        int uprightColumn = toUprightColumn(column);
@@ -74,4 +47,24 @@ void shiftAndAppend(char screen[16][2], char append[2]) {
  
   screen[15][0] = append[0];
   screen[15][1] = append[1]; 
+}
+
+void display_setup()
+{  
+       lcd.begin(16, 2);
+       initialise();
+}
+
+void display_loop()
+{
+   display(screen);
+   shiftAndAppend(screen, getValidRow());
+}
+
+void initialise() {
+  for (int row = 0; row < 16; row++) {
+     char* validRow = getValidRow();
+     screen[row][TOP_LEFT] = validRow[0];
+     screen[row][TOP_RIGHT] = validRow[1];
+  }   
 }
