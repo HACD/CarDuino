@@ -31,10 +31,8 @@ void display(char screen[16][2])
   } 
 }
 
-void display_player(unsigned int playerPosition)
+bool display_player(unsigned int playerPosition)
 {
-  Serial.print("player position: " + playerPosition);
-    
   // repaint obstacles
   lcd.setCursor(15, LEFT);
   lcd.print(screen[15][0]);
@@ -45,6 +43,42 @@ void display_player(unsigned int playerPosition)
   // paint player position
   lcd.setCursor(15, playerPosition);
   lcd.print(DISPLAY_PLAYER_AVATAR);
+  
+  // if there is an obstacle here
+  if(screen[15][playerPosition ^ 1] == '#')
+  {
+    return true;
+  }
+  
+  // if not
+  return false;
+}
+
+void display_intro()
+{
+  display_clear();
+  lcd.setCursor(0, 0);
+  lcd.print("    CarDuino");
+  lcd.setCursor(0, 1);
+  lcd.print("  Insert Coin");
+}
+
+void display_endGame(unsigned int score)
+{
+  display_clear();
+  lcd.setCursor(0, 0);
+  lcd.print( "   Game Over" );
+  lcd.setCursor(0, 1);
+  lcd.print( "Score: " );
+  lcd.print( score, DEC );
+}
+
+void display_clear()
+{
+  lcd.setCursor(0, 0);
+  lcd.print("                ");
+  lcd.setCursor(0, 1);
+  lcd.print("                ");
 }
 
 char* getValidRow(char screen[16][2], int previousRowIndex) {
