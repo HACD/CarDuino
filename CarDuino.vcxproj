@@ -85,7 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Display.cpp" />
-    <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
