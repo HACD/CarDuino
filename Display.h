@@ -1,6 +1,12 @@
 #ifndef Display_h
 #define Display_h
 
+typedef struct co_ordinates_t 
+{
+  int x;
+  int y;
+} Coordinates;
+
 class Display
 {
   public:
@@ -10,8 +16,9 @@ class Display
     void paint();
     void loop();
     void display_intro();
-    bool display_player(unsigned int);
+    bool did_player_collide(unsigned int);
     void display_endGame(unsigned int);
+    void print(Coordinates, char);
 };
 
 #endif

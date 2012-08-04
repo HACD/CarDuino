@@ -3,23 +3,15 @@
 
 #include "Display.h"
 
-typedef struct co_ordinates_t 
-{
-  int x;
-  int y;
-} Coordinates;
-
 class Drawable
 {
-  private:
+  protected:
     Display _display;
     Coordinates _coordinates;
     char** _avatar;
     bool _dirty;
     
   public:
-    Drawable(Display display);
-
     virtual void paint() = 0;
 };
 

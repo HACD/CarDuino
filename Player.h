@@ -5,7 +5,13 @@
 
 class Player : public Drawable
 {
-    virtual void paint() = 0;
+  public:
+    Player(Display display);
+
+    virtual void paint();
+    unsigned int getPosition();
+    void setPositionLeft();
+    void setPositionRight();
 };
 
 #endif

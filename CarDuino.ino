@@ -10,6 +10,7 @@ unsigned long last_updated = millis();
 
 Input input(A0);
 Display display;
+Player player(display);
 
 /*------------------------------------------------------------------------------
   Functions
@@ -39,17 +40,18 @@ void loop()
       switch( buttonPressed )
       {
         case Input::DOWN_BUTTON_PRESSED :
-          player_setPositionLeft();
+          player.setPositionLeft();
         break;
         case Input::UP_BUTTON_PRESSED :
-          player_setPositionRight();
+          player.setPositionRight();
         break;
         default:
           ;
         break;
       }
       
-      collide = display.display_player( player_getPosition() );
+      collide = display.did_player_collide( player.getPosition() );
+      player.paint();
 
       if(collide)
       {

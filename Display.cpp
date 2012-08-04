@@ -102,22 +102,8 @@ void Display::display_intro()
   lcd.print("  Insert Coin");
 }
 
-bool Display::display_player(unsigned int playerPosition)
+bool Display::did_player_collide(unsigned int playerPosition)
 {
-  // repaint obstacles
-  if (playerPosition == 1) {
-    lcd.setCursor(15, RIGHT);
-    lcd.print(screen[15][1]);
-  }
-  else if (playerPosition == 0) {
-    lcd.setCursor(15, LEFT);
-    lcd.print(screen[15][0]);
-  }
-
-  // paint player position
-  lcd.setCursor(15, playerPosition);
-  lcd.print(DISPLAY_PLAYER_AVATAR);
-
   // if there is an obstacle here
   if(screen[15][playerPosition ^ 1] == '#')
   {
@@ -136,4 +122,12 @@ void Display::display_endGame(unsigned int score)
   lcd.setCursor(0, 1);
   lcd.print( "Score: " );
   lcd.print( score, DEC );
+}
+
+void Display::print(Coordinates c, char value) 
+{
+   screen[c.x][c.y] = value; 
+
+   lcd.setCursor(c.x, c.y);
+   lcd.print(value);
 }
