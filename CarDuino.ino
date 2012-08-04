@@ -1,3 +1,4 @@
+#include "Intro.h"
 #include "Display.h"
 #include "Input.h"
 #include "Player.h"
@@ -12,6 +13,7 @@ Input input(A0);
 Drawable** drawables;
 Display display;
 Player player(display);
+Intro intro(display);
 
 /*------------------------------------------------------------------------------
   Functions
@@ -31,7 +33,7 @@ void loop()
     unsigned int score = 0;
     bool collide = false;
 
-    display.display_intro();
+    intro.paint();
     delay(3000);
 
     while(!collide)

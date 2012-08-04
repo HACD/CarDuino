@@ -1,6 +1,7 @@
 #include "Display.h"
 #include <Arduino.h>
 #include <LiquidCrystal.h>
+#include <stdint.h>
 
 #define LEFT 1
 #define RIGHT 0
@@ -85,21 +86,12 @@ void Display::loop()
   paint();
 }
 
-void clear()
+void Display::clear()
 {
   lcd.setCursor(0, 0);
   lcd.print("                ");
   lcd.setCursor(0, 1);
   lcd.print("                ");
-}
-
-void Display::display_intro()
-{
-  clear();
-  lcd.setCursor(0, 0);
-  lcd.print("    CarDuino");
-  lcd.setCursor(0, 1);
-  lcd.print("  Insert Coin");
 }
 
 bool Display::did_player_collide(unsigned int playerPosition)
@@ -130,4 +122,10 @@ void Display::print(Coordinates c, char value)
 
    lcd.setCursor(c.x, c.y);
    lcd.print(value);
+}
+
+void Display::print(uint8_t x, uint8_t y, const char value[])
+{
+  lcd.setCursor(x, y);
+  lcd.print(value);
 }

@@ -1,6 +1,8 @@
 #ifndef Display_h
 #define Display_h
 
+#include <stdint.h>
+
 typedef struct co_ordinates_t 
 {
   int x;
@@ -15,10 +17,11 @@ class Display
     void setup();
     void paint();
     void loop();
-    void display_intro();
+    void clear();
     bool did_player_collide(unsigned int);
     void display_endGame(unsigned int);
     void print(Coordinates, char);
+    void print(uint8_t x, uint8_t y, const char[]);
 };
 
 #endif
