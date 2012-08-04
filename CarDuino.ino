@@ -1,9 +1,12 @@
+#include "Input.h"
+
 /*------------------------------------------------------------------------------
   Variables
   ----------------------------------------------------------------------------*/
 
 unsigned long last_updated = millis();
 
+Input input(A0);
 
 /*------------------------------------------------------------------------------
   Functions
@@ -11,7 +14,7 @@ unsigned long last_updated = millis();
 
 void setup()
 {
-  buttons_setup();
+  //buttons_setup();
   display_setup();
 }
 
@@ -29,17 +32,31 @@ void loop()
     {
       unsigned long now = millis();
 
-      buttons_updateState();
+      //buttons_updateState();
       //buttons_print();
+      
+      uint8_t buttonPressed = input.getPressedButton();
 
-      if( buttons_isDownPressed() )
+      switch( buttonPressed )
+      {
+        case Input::DOWN_BUTTON_PRESSED :
+          player_setPositionLeft();
+        break;
+        case Input::UP_BUTTON_PRESSED :
+          player_setPositionRight();
+        break;
+        default:
+          ;
+        break;
+      }
+      /*if( buttons_isDownPressed() )
       {
         player_setPositionLeft();
       }
       else if( buttons_isUpPressed() )
       {
         player_setPositionRight();
-      }
+      }*/
 
       collide = display_player( player_getPosition() );
 
