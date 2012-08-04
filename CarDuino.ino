@@ -14,7 +14,6 @@ Input input(A0);
 
 void setup()
 {
-  //buttons_setup();
   display_setup();
 }
 
@@ -32,9 +31,6 @@ void loop()
     {
       unsigned long now = millis();
 
-      //buttons_updateState();
-      //buttons_print();
-      
       uint8_t buttonPressed = input.getPressedButton();
 
       switch( buttonPressed )
@@ -49,15 +45,7 @@ void loop()
           ;
         break;
       }
-      /*if( buttons_isDownPressed() )
-      {
-        player_setPositionLeft();
-      }
-      else if( buttons_isUpPressed() )
-      {
-        player_setPositionRight();
-      }*/
-
+      
       collide = display_player( player_getPosition() );
 
       if(collide)
