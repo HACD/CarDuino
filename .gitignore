@@ -1,0 +1,9 @@
+## generic files to ignore
+
+*.sdf
+*.suo
+*.user
+_ReSharper.*
+Debug/*
+*.opensdf
+ipch/*
