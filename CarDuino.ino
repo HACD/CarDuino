@@ -1,6 +1,6 @@
+#include "Display.h"
 #include "Input.h"
 #include "Player.h"
-#include "Display.h"
 
 /*------------------------------------------------------------------------------
   Variables
@@ -10,6 +10,7 @@ unsigned long last_updated = millis();
 
 Input input(A0);
 Drawable** drawables;
+Display display;
 
 /*------------------------------------------------------------------------------
   Functions
@@ -17,11 +18,10 @@ Drawable** drawables;
 
 void setup()
 {
-  display_setup();
-  
   drawables = (Drawable**) malloc( 16 * 2 * sizeof(Drawable) );
-  
   drawables[0] = new Player();
+  
+  display.setup();
 }
 
 void loop()
@@ -31,7 +31,7 @@ void loop()
     unsigned int score = 0;
     bool collide = false;
 
-    display_intro();
+    display.display_intro();
     delay(3000);
 
     while(!collide)
@@ -54,7 +54,7 @@ void loop()
         break;
       }
       
-      collide = display_player( player_getPosition() );
+      collide = display.display_player( player_getPosition() );
 
       if(collide)
       {
@@ -69,7 +69,7 @@ void loop()
 
       if( now - last_updated > speed )
       {
-        display_loop();
+        display.loop();
         last_updated = now;
 
         score++;
@@ -78,7 +78,7 @@ void loop()
       delay(20);
     }
 
-    display_endGame( score );
+    display.display_endGame( score );
 
     delay(5000);
   }

@@ -8,3 +8,4 @@ Debug/*
 *.opensdf
 ipch/*
 .vmprogram/*
+*.dotCover
