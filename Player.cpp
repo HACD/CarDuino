@@ -35,7 +35,7 @@ Player::Player(Display display)
 {
    _display = display;
 }
-
+  
 void Player::paint() 
 {
   _coordinates.x = 15;

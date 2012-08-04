@@ -8,7 +8,7 @@ class Player : public Drawable
   public:
     Player(Display display);
 
-    virtual void paint();
+    void paint();
     unsigned int getPosition();
     void setPositionLeft();
     void setPositionRight();

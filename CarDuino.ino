@@ -9,6 +9,7 @@
 unsigned long last_updated = millis();
 
 Input input(A0);
+Drawable** drawables;
 Display display;
 Player player(display);
 
@@ -18,6 +19,8 @@ Player player(display);
 
 void setup()
 {
+  drawables = (Drawable**) malloc( 16 * 2 * sizeof(Drawable) );
+  
   display.setup();
 }
 
@@ -33,6 +36,7 @@ void loop()
 
     while(!collide)
     {
+      //drawables[0]->paint();
       unsigned long now = millis();
 
       uint8_t buttonPressed = input.getPressedButton();
