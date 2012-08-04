@@ -1,7 +1,9 @@
-//Display::Display() 
-//{
-//}
-//
-//void paint() 
-//{
-//}
+#include "Display.h"
+
+Display::Display() 
+{
+}
+
+void paint() 
+{
+}

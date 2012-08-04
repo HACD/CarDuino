@@ -5,7 +5,9 @@
 
 class Player : public Drawable
 {
-    virtual void paint() = 0;
+  public:
+    Player();
+    void paint();
 };
 
 #endif
