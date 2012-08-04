@@ -1,0 +1,9 @@
+<VisualMicro>
+  <Program Name="CarDuino" Ext=".ino" Location="C:\Users\Michael\Documents\GitHub\CarDuino">
+    <Compile IsCompiled="0" CompilerErrors="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Users\Michael\AppData\Local\VMicro\Arduino\Builds\CarDuino\uno" />
+    <Platform Name="Arduino">
+      <Board Name="uno" Description="Arduino Uno" CoreFolder="C:\Users\Michael\Desktop\Arduino\arduino-1.0.1-windows\arduino-1.0.1\hardware\arduino\cores\arduino" VariantFullPath="C:\Users\Michael\Desktop\Arduino\arduino-1.0.1-windows\arduino-1.0.1\hardware\arduino\variants\standard" />
+    </Platform>
+    <Debug EnableBreak="0" />
+  </Program>
+</VisualMicro>
