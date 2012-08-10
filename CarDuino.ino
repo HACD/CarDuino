@@ -1,3 +1,4 @@
+#include "Score.h"
 #include "Intro.h"
 #include "Display.h"
 #include "Input.h"
@@ -14,15 +15,10 @@ Drawable** drawables;
 Display display;
 Player player(display);
 Intro intro(display);
-
-/*------------------------------------------------------------------------------
-  Functions
-  ----------------------------------------------------------------------------*/
+Score score(display);
 
 void setup()
 {
-  drawables = (Drawable**) malloc( 16 * 2 * sizeof(Drawable) );
-  
   display.setup();
 }
 
@@ -30,20 +26,17 @@ void loop()
 {
   while(true)
   {
-    unsigned int score = 0;
-    bool collide = false;
+    unsigned int playerScore = 0;
 
     intro.paint();
     delay(3000);
 
-    while(!collide)
+    while (true)
     {
-      //drawables[0]->paint();
       unsigned long now = millis();
 
       uint8_t buttonPressed = input.getPressedButton();
-
-      switch( buttonPressed )
+      switch (buttonPressed)
       {
         case Input::DOWN_BUTTON_PRESSED :
           player.setPositionLeft();
@@ -56,32 +49,32 @@ void loop()
         break;
       }
       
-      collide = display.did_player_collide( player.getPosition() );
-      player.paint();
-
-      if(collide)
+      bool collide = display.did_player_collide(player.getPosition());
+      if (collide)
       {
         break;
       }
 
-      int speed = 1000 - (10 * score);
-      if( speed < 100)
+      player.paint();
+
+      int speed = 1000 - (10 * playerScore);
+      if (speed < 100)
       {
         speed = 100;
       }
 
-      if( now - last_updated > speed )
+      if ((now - last_updated) > speed)
       {
         display.loop();
         last_updated = now;
 
-        score++;
+        playerScore++;
       }
 
       delay(20);
     }
 
-    display.display_endGame( score );
+    score.paint(playerScore);
 
     delay(5000);
   }

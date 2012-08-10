@@ -2,7 +2,6 @@
 
 Drawable::Drawable()
 {
-  ;
 };
 
 Drawable::Drawable(Display display, Coordinates coordinates, int rate, String avatar)

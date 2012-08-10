@@ -16,7 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CarDuino.ino" />
-    <None Include="Buttons.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h">
@@ -37,6 +36,12 @@
     <ClInclude Include="Intro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cppfix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include=".vmprogram\.CarDuino.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -55,6 +60,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Intro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

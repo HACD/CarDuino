@@ -19,9 +19,8 @@ class Display
     void loop();
     void clear();
     bool did_player_collide(unsigned int);
-    void display_endGame(unsigned int);
     void print(Coordinates, char);
-    void print(uint8_t x, uint8_t y, const char[]);
+    void print(uint8_t x, uint8_t y, char[]);
 };
 
 #endif

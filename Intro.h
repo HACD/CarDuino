@@ -12,4 +12,3 @@ class Intro : public Drawable
 };
 
 #endif
-

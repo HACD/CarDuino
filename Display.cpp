@@ -106,16 +106,6 @@ bool Display::did_player_collide(unsigned int playerPosition)
   return false;
 }
 
-void Display::display_endGame(unsigned int score)
-{
-  clear();
-  lcd.setCursor(0, 0);
-  lcd.print( "   Game Over" );
-  lcd.setCursor(0, 1);
-  lcd.print( "Score: " );
-  lcd.print( score, DEC );
-}
-
 void Display::print(Coordinates c, char value) 
 {
    screen[c.x][c.y] = value; 
@@ -124,7 +114,7 @@ void Display::print(Coordinates c, char value)
    lcd.print(value);
 }
 
-void Display::print(uint8_t x, uint8_t y, const char value[])
+void Display::print(uint8_t x, uint8_t y, char value[])
 {
   lcd.setCursor(x, y);
   lcd.print(value);

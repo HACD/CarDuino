@@ -71,24 +71,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="Buttons.ino" />
     <None Include="CarDuino.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include=".vmprogram\.CarDuino.vsarduino.h" />
+    <ClInclude Include="cppfix.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Intro.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Score.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Intro.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Score.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
