@@ -6,10 +6,10 @@ Drawable::Drawable()
 
 Drawable::Drawable(Display display, Coordinates coordinates, int rate, String avatar)
 {
-  this->_display = display;
-  this->_coordinates = coordinates;
-  this->_rate = rate;
-  this->_avatar = avatar;
+  _display = display;
+  _coordinates = coordinates;
+  _rate = rate;
+  _avatar = avatar;
   
-  this->_dirty = false;
+  _dirty = false;
 };

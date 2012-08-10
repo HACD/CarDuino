@@ -3,63 +3,46 @@
 
 Input::Input(uint8_t pin)
 {
-  this->_buttonPin = pin;
+  _buttonPin = pin;
+
   // set BUTTON_PIN to input and ensure pullup is off
-  pinMode( this->_buttonPin, INPUT );
-  digitalWrite( this->_buttonPin, LOW );
+  pinMode(_buttonPin, INPUT);
+  digitalWrite(_buttonPin, LOW);
 };
 
 void Input::_readButtonState()
 {
-  this->_buttonPressed = Input::NO_BUTTON_PRESSED;
-  
-  unsigned int voltage;
+  _buttonPressed = Input::NO_BUTTON_PRESSED;
   
   //read the button ADC pin voltage
-  voltage = analogRead( this->_buttonPin );
+  unsigned int voltage = analogRead(_buttonPin);
 
   //sense if the voltage falls within valid voltage windows
-  if( voltage < ( Input::_buttonRightADC + Input::_buttonThreshold ) )
+  if (voltage < (_buttonRightADC + _buttonThreshold))
   {
-    this->_buttonPressed = RIGHT_BUTTON_PRESSED;
+    _buttonPressed = RIGHT_BUTTON_PRESSED;
   }
-  
-  else if( 
-      voltage >= ( Input::_buttonUpADC - Input::_buttonThreshold ) &&
-      voltage <= ( Input::_buttonUpADC + Input::_buttonThreshold ) 
-  )
+  else if (voltage >= (_buttonUpADC - _buttonThreshold) && voltage <= (_buttonUpADC + _buttonThreshold))
   {
-    this->_buttonPressed = UP_BUTTON_PRESSED;
+    _buttonPressed = UP_BUTTON_PRESSED;
   }
-  
-  else if( 
-      voltage >= ( Input::_buttonDownADC - Input::_buttonThreshold ) &&
-      voltage <= ( Input::_buttonDownADC + Input::_buttonThreshold ) 
-  )
+  else if (voltage >= (_buttonDownADC - _buttonThreshold) && voltage <= (_buttonDownADC + _buttonThreshold))
   {
-    this->_buttonPressed = DOWN_BUTTON_PRESSED;
+    _buttonPressed = DOWN_BUTTON_PRESSED;
   }
-  
-  else if( 
-      voltage >= ( Input::_buttonLeftADC - Input::_buttonThreshold ) &&
-      voltage <= ( Input::_buttonLeftADC + Input::_buttonThreshold ) 
-  )
+  else if (voltage >= (_buttonLeftADC - _buttonThreshold) &&voltage <= (_buttonLeftADC + _buttonThreshold))
   {
-    this->_buttonPressed = LEFT_BUTTON_PRESSED;
+    _buttonPressed = LEFT_BUTTON_PRESSED;
   }
-  
-  else if( 
-      voltage >= ( Input::_buttonSelectADC - Input::_buttonThreshold ) &&
-      voltage <= ( Input::_buttonSelectADC + Input::_buttonThreshold ) 
-  )
+  else if (voltage >= (_buttonSelectADC - _buttonThreshold) && voltage <= (_buttonSelectADC + _buttonThreshold ) )
   {
-    this->_buttonPressed = SELECT_BUTTON_PRESSED;
+    _buttonPressed = SELECT_BUTTON_PRESSED;
   }
 };
 
 uint8_t Input::getPressedButton()
 {
-  this->_readButtonState();
+  _readButtonState();
   
-  return this->_buttonPressed;
+  return _buttonPressed;
 };

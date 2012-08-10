@@ -50,6 +50,7 @@ void Display::clear()
   lcd.print("                ");
 }
 
+// TODO: Somehow distinguish between this overload (which stores in screen) and the overload below which doesn't
 void Display::print(Coordinates c, char value) 
 {
    screen[c.x][c.y] = value; 

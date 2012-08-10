@@ -6,6 +6,7 @@
 class Player : public Drawable
 {
   public:
+    Player(); // TODO: This shouldn't be required, but how to we have an instance field without the default constructor?
     Player(Display display);
 
     void paint();

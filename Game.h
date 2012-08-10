@@ -2,13 +2,18 @@
 #define Game_h
 
 #include "Display.h"
+#include "Player.h"
 
 class Game
 {
+  protected:
+    Display _display;
+    Player _player;
+
   public:
-    Game(Display display);
+    Game(Display display, Player player);
     void tick();
-    bool didPlayerCollide(unsigned int);
+    bool didPlayerCollide();
 };
 
 #endif

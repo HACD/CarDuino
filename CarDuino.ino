@@ -1,39 +1,39 @@
-#include "Game.h"
-#include "Score.h"
-#include "Intro.h"
 #include "Display.h"
-#include "Input.h"
 #include "Player.h"
+#include "Intro.h"
+#include "Score.h"
+#include "Game.h"
+#include "Input.h"
 
 unsigned long last_updated = millis();
 
-Input input(A0);
-Drawable** drawables;
-Display display;
-Player player(display);
-Intro intro(display);
-Score score(display);
-Game game(display);
+Input _input(A0);
+Display _display;
+Player _player(_display);
+Intro _intro(_display);
+Score _score(_display);
+Game _game(_display, _display);
 
 void setup()
 {
-  display.setup();
+  _display.setup();
 }
 
 void handleInput() 
 {
-  uint8_t buttonPressed = input.getPressedButton();
+  uint8_t buttonPressed = _input.getPressedButton();
   switch (buttonPressed)
   {
     case Input::DOWN_BUTTON_PRESSED :
-      player.setPositionLeft();
-    break;
+      _player.setPositionLeft();
+      break;
+
     case Input::UP_BUTTON_PRESSED :
-      player.setPositionRight();
-    break;
+      _player.setPositionRight();
+      break;
+
     default:
-      ;
-    break;
+      break;
   }
 }
 
@@ -54,7 +54,7 @@ void loop()
   {
     unsigned int playerScore = 0;
 
-    intro.paint();
+    _intro.paint();
     delay(3000);
 
     while (true)
@@ -63,14 +63,14 @@ void loop()
 
       handleInput();
       
-      if (game.didPlayerCollide(player.getPosition()))
+      if (_game.didPlayerCollide())
         break;
 
-      player.paint();
+      _player.paint();
 
       if ((now - last_updated) > calculateSpeed(playerScore))
       {
-        game.tick();
+        _game.tick();
         last_updated = now;
         playerScore++;
       }
@@ -78,7 +78,7 @@ void loop()
       delay(20);
     }
 
-    score.paint(playerScore);
+    _score.paint(playerScore);
 
     delay(5000);
   }
