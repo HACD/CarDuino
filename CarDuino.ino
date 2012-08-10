@@ -5,10 +5,6 @@
 #include "Input.h"
 #include "Player.h"
 
-/*------------------------------------------------------------------------------
-  Variables
-  ----------------------------------------------------------------------------*/
-
 unsigned long last_updated = millis();
 
 Input input(A0);
@@ -24,6 +20,34 @@ void setup()
   display.setup();
 }
 
+void handleInput() 
+{
+  uint8_t buttonPressed = input.getPressedButton();
+  switch (buttonPressed)
+  {
+    case Input::DOWN_BUTTON_PRESSED :
+      player.setPositionLeft();
+    break;
+    case Input::UP_BUTTON_PRESSED :
+      player.setPositionRight();
+    break;
+    default:
+      ;
+    break;
+  }
+}
+
+unsigned int calculateSpeed(unsigned int playerScore) 
+{
+  unsigned int speed = 1000 - (10 * playerScore);
+  if (speed < 100)
+  {
+    speed = 100;
+  }
+
+  return speed;
+}
+
 void loop()
 {
   while(true)
@@ -37,35 +61,14 @@ void loop()
     {
       unsigned long now = millis();
 
-      uint8_t buttonPressed = input.getPressedButton();
-      switch (buttonPressed)
-      {
-        case Input::DOWN_BUTTON_PRESSED :
-          player.setPositionLeft();
-        break;
-        case Input::UP_BUTTON_PRESSED :
-          player.setPositionRight();
-        break;
-        default:
-          ;
-        break;
-      }
+      handleInput();
       
-      bool collide = game.didPlayerCollide(player.getPosition());
-      if (collide)
-      {
+      if (game.didPlayerCollide(player.getPosition()))
         break;
-      }
 
       player.paint();
 
-      int speed = 1000 - (10 * playerScore);
-      if (speed < 100)
-      {
-        speed = 100;
-      }
-
-      if ((now - last_updated) > speed)
+      if ((now - last_updated) > calculateSpeed(playerScore))
       {
         game.tick();
         last_updated = now;
