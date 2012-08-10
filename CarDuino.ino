@@ -1,3 +1,4 @@
+#include "Game.h"
 #include "Score.h"
 #include "Intro.h"
 #include "Display.h"
@@ -16,6 +17,7 @@ Display display;
 Player player(display);
 Intro intro(display);
 Score score(display);
+Game game(display);
 
 void setup()
 {
@@ -49,7 +51,7 @@ void loop()
         break;
       }
       
-      bool collide = display.did_player_collide(player.getPosition());
+      bool collide = game.didPlayerCollide(player.getPosition());
       if (collide)
       {
         break;
@@ -65,9 +67,8 @@ void loop()
 
       if ((now - last_updated) > speed)
       {
-        display.loop();
+        game.tick();
         last_updated = now;
-
         playerScore++;
       }
 

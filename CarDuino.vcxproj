@@ -78,6 +78,7 @@
     <ClInclude Include="cppfix.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Drawable.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Intro.h" />
     <ClInclude Include="Obstacle.h" />
@@ -87,6 +88,7 @@
   <ItemGroup>
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Drawable.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Intro.cpp" />
     <ClCompile Include="Obstacle.cpp" />

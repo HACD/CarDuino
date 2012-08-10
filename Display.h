@@ -9,6 +9,8 @@ typedef struct co_ordinates_t
   int y;
 } Coordinates;
 
+typedef char** Board;
+
 class Display
 {
   public:
@@ -16,11 +18,11 @@ class Display
 
     void setup();
     void paint();
-    void loop();
     void clear();
-    bool did_player_collide(unsigned int);
     void print(Coordinates, char);
     void print(uint8_t x, uint8_t y, char[]);
+    void prependRow(char* append);
+    char getCharAt(uint8_t row, uint8_t column);
 };
 
 #endif
